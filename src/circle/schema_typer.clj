@@ -10,7 +10,7 @@
 (t/ann clojure.core/group-by (t/All [x y] [(t/IFn [x -> y]) (t/Seq x) -> (t/Map y (t/Seq x))]))
 
 ;; refine these later
-(t/defalias Schema (t/U Number (t/Map t/Any t/Any) (t/HMap)))
+(t/defalias Schema (t/U Number Class (t/Map t/Any t/Any) (t/HMap)))
 (t/defalias CoreType (t/Rec [x] (t/U t/Sym (t/Seq (t/U t/Sym t/Kw x)))))
 
 (t/ann schema.core/validate [Schema t/Any -> t/Any])
@@ -22,6 +22,9 @@
 
 (defmethod convert-predicate 'keyword? [s]
   'clojure.lang.Keyword)
+
+(defmethod convert-predicate 'integer? [s]
+  'clojure.core.typed/Int)
 
 (t/ann convert-dispath [Schema -> Class])
 (defn convert-dispatch [schema]
