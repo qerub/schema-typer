@@ -33,6 +33,17 @@
 (t/ann ^:no-check convert [Schema -> CoreType])
 (defmulti convert "" #'convert-dispatch)
 
+(ann class->name [Class -> Symbol])
+(defn class->name
+  [c]
+  (let [[_ name] (re-find #"class (.+)$" (str c))]
+    (assert (string? name))
+    (symbol name)))
+
+(defmethod convert :default [s]
+  (assert (class? s))
+  (class->name s))
+
 (defmethod convert :predicate [s]
   (convert-predicate s))
 

@@ -1,6 +1,7 @@
 (ns circle.schema-typer-test
   (:import (clojure.lang Keyword
-                         IPersistentMap))
+                         IPersistentMap)
+           java.util.Date)
   (:require [clojure.test :refer :all]
             [clojure.core.typed :as t]
             [schema.core :as s]
@@ -15,6 +16,9 @@
 
 (deftest numbers-work
   (is-equiv 3 s/Num 'java.lang.Number))
+
+(deftest random-classes
+  (is-equiv (Date.) java.util.Date 'java.util.Date))
 
 (deftest any
   (is-equiv "foo" s/Any `t/Any))
