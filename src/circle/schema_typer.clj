@@ -36,7 +36,7 @@
 (t/ann ^:no-check convert [Schema -> CoreType])
 (defmulti convert "" #'convert-dispatch)
 
-(ann class->name [Class -> Symbol])
+(t/ann class->name [Class -> t/Sym])
 (defn class->name
   [c]
   (let [[_ name] (re-find #"class (.+)$" (str c))]
