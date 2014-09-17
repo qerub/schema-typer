@@ -44,7 +44,7 @@
     (symbol name)))
 
 (defmethod convert :default [s]
-  (assert (class? s))
+  (assert (class? s) (str "Error!" s "is not a class" (class s)))
   (class->name s))
 
 (defmethod convert :predicate [s]
