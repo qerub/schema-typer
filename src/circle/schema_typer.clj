@@ -51,7 +51,7 @@
   (convert-predicate s))
 
 (defmethod convert Number [s]
-  'java.lang.Number)
+  (class->name s))
 
 (defmethod convert String [s]
   'java.lang.String)
