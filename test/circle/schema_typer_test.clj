@@ -38,6 +38,11 @@
         t `(t/Map clojure.lang.Keyword java.lang.String)]
     (is-equiv v s t)))
 
+(deftest sets-work
+  (let [v #{1 2 3}
+        s #{Long}
+        t (t/Set Long)]
+    (is-equiv v s t)))
 (deftest nested-hmaps-work
   (let [v {:foo {:bar "baz"}}
         s {:foo {:bar String}}
