@@ -41,7 +41,7 @@
 (deftest sets-work
   (let [v #{1 2 3}
         s #{Long}
-        t (t/Set Long)]
+        t `(t/Set Long)]
     (is-equiv v s t)))
 
 (deftest s-keyword-works
