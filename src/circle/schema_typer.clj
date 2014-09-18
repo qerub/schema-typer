@@ -44,7 +44,7 @@
     (symbol name)))
 
 (defmethod convert :default [s]
-  (assert (class? s) (str "Error!" s "is not a class" (class s)))
+  (assert (class? s) (str "Error: " s " is not a class " (class s)))
   (class->name s))
 
 (defmethod convert :predicate [s]
@@ -85,6 +85,7 @@
 (t/ann convert-map [(t/Map Schema Schema) -> CoreType])
 (defn convert-map [s]
   (assert (map? s))
+  (assert (> (count s) 0) "convert-map must specify at least one kv pair")
   (assert (= 1 (count s)) "convert-map only supports one kv")
   (let [ks (-> s first key)
         vs (-> s first val)
