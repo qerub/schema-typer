@@ -43,6 +43,13 @@
         s #{Long}
         t (t/Set Long)]
     (is-equiv v s t)))
+
+(deftest s-keyword-works
+  (let [v {:foo "foo"}
+        s {s/Keyword s/Any}
+        t `(t/Map clojure.lang.Keyword t/Any)]
+    (is-equiv v s t)))
+
 (deftest nested-hmaps-work
   (let [v {:foo {:bar "baz"}}
         s {:foo {:bar String}}
