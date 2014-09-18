@@ -132,6 +132,7 @@
 (defn split-map
   [s]
   "given a schema that contains HMap and t/Map keys, split and return two maps"
+  (assert (map? s))
   (let [{hmap true
          map false} (group-by (fn [[k v]]
                                 (hmap-key? k)) s)]
