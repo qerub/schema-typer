@@ -10,7 +10,8 @@
 (t/ann clojure.core/group-by (t/All [x y] [(t/IFn [x -> y]) (t/Seq x) -> (t/Map y (t/Seq x))]))
 
 ;; refine these later
-(t/defalias Schema (t/U Number Class (t/Map t/Any t/Any) (t/HMap)))
+(t/defalias SchemaMap (t/Map t/Any t/Any))
+(t/defalias Schema (t/U Number Class SchemaMap))
 (t/defalias CoreType (t/Rec [x] (t/U t/Sym (t/Seq (t/U t/Sym t/Kw x)))))
 
 (t/ann schema.core/validate [Schema t/Any -> t/Any])
