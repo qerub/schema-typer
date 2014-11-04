@@ -77,11 +77,10 @@
 
 (defmethod convert schema.core.ConditionalSchema [s]
   (conj
-   (->> (schema.core/explain s)
-        (rest)
-        (rest)
-        (take-nth 2)
-        (map convert)) 'clojure.core.typed/U))
+   (->> (:preds-and-schemas s)
+        (map second)
+        (map (fn [s]
+               (convert s)))) 'clojure.core.typed/U))
 
 (defmethod convert schema.core.EqSchema [s]
   (list 'clojure.core.typed/Value (:v s)))
