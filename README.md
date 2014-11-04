@@ -7,7 +7,7 @@ schema-typer ![CircleCI Status][]
 Creates core.typed types from prismatic/schema definitions. Inspired by https://gist.github.com/c-spencer/6569571
 
 ```clojure
-[arohner/schema-typer "0.2.9"]
+[arohner/schema-typer "0.2.10"]
 ```
 Requires schema > 0.2.0
 
