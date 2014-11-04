@@ -43,11 +43,7 @@ Usage
 Limitations
 ===========
 
-It's pretty janky atm. There are a few critical ^:no-checks, because
-core.typed doesn't yet 'believe' that schema is validating
-properly. Currently, def-validators are ^:no-checked, but they do call (schema.core/validate schema) so you get proper checking at runtime.
-
-The mapping from schema -> core.typed is currently extremely incomplete, but it should be obvious how to extend. Patches welcome.
+The mapping from schema -> core.typed is incomplete, but it should be obvious how to extend. Patches welcome.
 
 License
 =======
