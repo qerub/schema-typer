@@ -107,3 +107,17 @@
 
 (deftest real-use-works
   (is (t/check-ns 'circle.schema-typer-def)))
+
+(deftest conditionals-work
+  (let [s (s/conditional (fn [x] (map? x)) {:foo java.lang.Boolean}
+                         (fn [x] (sequential? x)) [java.lang.Long])
+        t '(clojure.core.typed/U (clojure.core.typed/HMap :mandatory {:foo java.lang.Boolean})
+                                 (clojure.core.typed/Vec java.lang.Long)
+                                 )]
+    (is-equiv {:foo true} s t)
+    (is-equiv [1 2 3] s t)))
+
+(deftest s-eq-works
+  (let [s (s/eq :foo)
+        t '(clojure.core.typed/Value :foo)]
+    (is-equiv :foo s t)))

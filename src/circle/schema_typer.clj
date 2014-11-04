@@ -75,6 +75,17 @@
 (defmethod convert schema.core.Either [s]
   (conj (map convert (:schemas s)) 'clojure.core.typed/U))
 
+(defmethod convert schema.core.ConditionalSchema [s]
+  (conj
+   (->> (schema.core/explain s)
+        (rest)
+        (rest)
+        (take-nth 2)
+        (map convert)) 'clojure.core.typed/U))
+
+(defmethod convert schema.core.EqSchema [s]
+  (list 'clojure.core.typed/Value (:v s)))
+
 (t/ann hmap-grouper [(IMapEntry t/Any t/Any) -> (t/U (t/Val :mandatory)
                                                      (t/Val :optional))])
 (defn hmap-grouper
