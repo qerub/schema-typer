@@ -25,6 +25,13 @@
 (deftest ints-work
   (is-equiv 3 s/Int `t/AnyInteger))
 
+(deftest intersections-work
+  (is-equiv 3 (s/both s/Num s/Int) `(t/I Number t/AnyInteger)))
+
+(deftest unions-work
+  (is-equiv 3 (s/either s/Num s/Str) `(t/U Number String))
+  (is-equiv "foo" (s/either s/Num s/Str) `(t/U Number String)))
+
 (deftest hmaps-work
   (let [v {:foo 5}
         s {:foo Number}

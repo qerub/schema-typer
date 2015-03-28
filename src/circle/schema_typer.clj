@@ -55,6 +55,12 @@
 (defmethod convert clojure.lang.Symbol [s]
   s)
 
+(defmethod convert schema.core.Both [s]
+  `(t/I ~@(map convert (:schemas s))))
+
+(defmethod convert schema.core.Either [s]
+  `(t/U ~@(map convert (:schemas s))))
+
 (t/ann hmap-grouper [(IMapEntry t/Any t/Any) -> (t/U (t/Val :mandatory)
                                                      (t/Val :optional))])
 (defn hmap-grouper
