@@ -126,7 +126,7 @@
 
   (assert (or (map? s) (class? s)))
   (cond
-   (= s clojure.lang.IPersistentMap) '(clojure.core.typed/Map Any Any)
+   (= s clojure.lang.IPersistentMap) '(clojure.core.typed/Map clojure.core.typed/Any clojure.core.typed/Any)
    (pure-map? s) (convert-map s)
    (pure-hmap? s) (convert-hmap s)
    :else (let [{:keys [hmap map]} (split-map s)]
