@@ -19,8 +19,11 @@
 (deftest any
   (is-equiv "foo" s/Any `t/Any))
 
-(deftest schema-pred
+(deftest keywords-work
   (is-equiv :foo s/Keyword 'clojure.lang.Keyword))
+
+(deftest ints-work
+  (is-equiv 3 s/Int `t/AnyInteger))
 
 (deftest hmaps-work
   (let [v {:foo 5}

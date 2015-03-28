@@ -21,6 +21,9 @@
 (defmethod convert-predicate 'keyword? [s]
   'clojure.lang.Keyword)
 
+(defmethod convert-predicate 'integer? [s]
+  `t/AnyInteger)
+
 (t/ann convert-dispath [Schema -> Class])
 (defn convert-dispatch [schema]
   (cond
