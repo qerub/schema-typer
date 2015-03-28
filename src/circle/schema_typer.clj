@@ -7,8 +7,6 @@
 
 (t/warn-on-unannotated-vars)
 
-(t/ann clojure.core/group-by (t/All [x y] [(t/IFn [x -> y]) (t/Seq x) -> (t/Map y (t/Seq x))]))
-
 ;; refine these later
 (t/defalias Schema (t/U Number (t/Map t/Any t/Any) (t/HMap)))
 (t/defalias CoreType (t/Rec [x] (t/U t/Sym (t/Seq (t/U t/Sym t/Kw x)))))
