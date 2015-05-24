@@ -99,6 +99,11 @@
                                :bar java.lang.Boolean})]
     (is-equiv {:foo true :bar false} s t)))
 
+(deftest intersection
+  (let [s (s/both s/Num s/Int)
+        t '(clojure.core.typed/I Number clojure.core.typed/AnyInteger)]
+    (is-equiv 3 s t)))
+
 (deftest union
   (let [s (s/either java.lang.Boolean java.lang.Long)
         t '(clojure.core.typed/U java.lang.Boolean java.lang.Long)]

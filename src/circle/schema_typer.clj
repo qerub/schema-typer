@@ -72,6 +72,9 @@
 (defmethod convert clojure.lang.IPersistentSet [s]
   (list 'clojure.core.typed/Set (convert (first s))))
 
+(defmethod convert schema.core.Both [s]
+  (conj (map convert (:schemas s)) 'clojure.core.typed/I))
+
 (defmethod convert schema.core.Either [s]
   (conj (map convert (:schemas s)) 'clojure.core.typed/U))
 
