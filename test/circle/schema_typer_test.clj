@@ -26,6 +26,11 @@
 (deftest keywords-work
   (is-equiv :foo s/Keyword 'clojure.lang.Keyword))
 
+(deftest ints-work
+  (is-equiv 3 s/Int `t/AnyInteger)
+  (is-equiv (Long. 3) s/Int `t/AnyInteger)
+  (is-equiv (clojure.lang.BigInt/fromLong 3) s/Int `t/AnyInteger))
+
 (deftest hmaps-work
   (let [v {:foo 5}
         s {:foo Number}
