@@ -23,7 +23,7 @@
 (deftest any
   (is-equiv "foo" s/Any `t/Any))
 
-(deftest schema-pred
+(deftest keywords-work
   (is-equiv :foo s/Keyword 'clojure.lang.Keyword))
 
 (deftest hmaps-work
